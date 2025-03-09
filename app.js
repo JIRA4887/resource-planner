@@ -5,7 +5,7 @@ const firebaseConfig = {
   projectId: "resourcing-ee800",
   storageBucket: "resourcing-ee800.firebasestorage.app",
   messagingSenderId: "574006926294",
-  appId: "1:574006926294:web:91a781b6d5c26846226277"
+  appId: "1:574006926294:web:91a781b6d5c26846226277",
 };
 
 // Initialize Firebase
