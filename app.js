@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+// Import React and ReactDOM from a CDN
+import React from 'https://esm.sh/react';
+import ReactDOM from 'https://esm.sh/react-dom';
 
 const ResourcePlanningApp = () => {
   // State definitions
