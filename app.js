@@ -26,7 +26,7 @@ addProjectForm.addEventListener("submit", async (e) => {
     if (projectName.trim() !== "") {
         await db.collection("projects").add({ name: projectName });
         addProjectForm.reset();
-        loadProjects();
+        await loadProjects(); // Ensure projects load after adding
     }
 });
 
@@ -39,7 +39,7 @@ addResourceForm.addEventListener("submit", async (e) => {
     if (resourceName.trim() !== "" && projectId !== "") {
         await db.collection("resources").add({ name: resourceName, projectId });
         addResourceForm.reset();
-        loadProjects();
+        await loadProjects();
     }
 });
 
@@ -49,6 +49,11 @@ async function loadProjects() {
     projectList.innerHTML = "";
 
     const projectsSnapshot = await db.collection("projects").get();
+    
+    if (projectsSnapshot.empty) {
+        console.log("No projects found.");
+    }
+
     projectsSnapshot.forEach(async (doc) => {
         const project = doc.data();
         const projectId = doc.id;
@@ -81,19 +86,23 @@ async function loadProjects() {
 
 // Delete Project
 async function deleteProject(projectId) {
+    if (!confirm("Are you sure you want to delete this project and its resources?")) return;
+    
     await db.collection("projects").doc(projectId).delete();
-
+    
     // Delete all associated resources
     const resourceSnapshot = await db.collection("resources").where("projectId", "==", projectId).get();
     resourceSnapshot.forEach((doc) => db.collection("resources").doc(doc.id).delete());
 
-    loadProjects();
+    await loadProjects();
 }
 
 // Delete Resource
 async function deleteResource(resourceId) {
+    if (!confirm("Are you sure you want to delete this resource?")) return;
+    
     await db.collection("resources").doc(resourceId).delete();
-    loadProjects();
+    await loadProjects();
 }
 
 // Initial Load
