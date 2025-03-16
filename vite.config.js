@@ -1,11 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
 
 export default defineConfig({
-  // Remove the root configuration since index.html is in the default location
   plugins: [react()],
+  root: './public', // This tells Vite to look for index.html inside the public folder
   build: {
-    outDir: 'dist'
+    outDir: '../dist' // Output the build files in the 'dist' folder
   }
 });
