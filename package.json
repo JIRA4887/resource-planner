@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "firebase": "^9.6.1",
+    "firebase": "^11.4.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
@@ -16,6 +16,8 @@
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
-    "vite": "^2.9.5"
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
+    "crypto-browserify": "^3.12.1",
+    "vite": "^2.9.9"
   }
 }
