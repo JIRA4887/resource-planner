@@ -5,15 +5,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   define: {
-    'global': 'globalThis',
-    'process.env': {}
-  },
-  build: {
-    target: 'esnext',
-    rollupOptions: {
-      output: {
-        manualChunks: undefined
-      }
-    }
+    'global': {},
+    'process.env': {},
+    'crypto': 'require("crypto")'
   }
 });
