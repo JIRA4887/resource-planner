@@ -1,12 +1,11 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  root: '.', // Set root as current folder
   build: {
-    rollupOptions: {
-      input: './index.html' // 👈 Entry point
-    }
-  }
+    target: 'esnext',  // Support latest JS features
+    outDir: 'dist',    // Output folder
+  },
 });
