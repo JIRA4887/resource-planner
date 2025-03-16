@@ -3,15 +3,11 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  define: {
-    'global': {}
-  },
-  resolve: {
-    alias: {
-      'crypto': 'crypto-browserify'
-    }
-  },
+  root: '.', // Explicit root directory
   build: {
-    target: 'esnext'
+    outDir: 'dist', 
+    rollupOptions: {
+      input: 'public/index.html' // Correct input path
+    }
   }
 });
