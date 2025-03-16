@@ -1,25 +1,26 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import GlobalsPolyfills from '@esbuild-plugins/node-globals-polyfill';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   define: {
-    global: 'globalThis',
+    'process.env': {},
+    global: 'globalThis'
+  },
+  resolve: {
+    alias: {
+      crypto: 'crypto-browserify'
+    }
   },
   optimizeDeps: {
     esbuildOptions: {
-      plugins: [
-        GlobalsPolyfills({
-          buffer: true,
-          process: true,
-        }),
-      ],
-    },
+      define: {
+        global: 'globalThis'
+      }
+    }
   },
   build: {
-    target: 'esnext', 
-    outDir: 'dist',
-  },
+    target: 'esnext'
+  }
 });
